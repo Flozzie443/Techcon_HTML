@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register for TechCon 2024</title>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Register for TechCon 2024</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <h2>Attendee Registration</h2>
+
+    <!-- Accessible form -->
+    <form id="registerForm" action="#" method="post" novalidate>
+      <div>
+        <label for="fullName">Full name</label><br>
+        <input id="fullName" name="fullName" type="text" required aria-required="true" />
+      </div>
+
+      <div>
+        <label for="email">Email address</label><br>
+        <input id="email" name="email" type="email" required aria-required="true" />
+      </div>
+
+      <div>
+        <label for="password">Password</label><br>
+        <input id="password" name="password" type="password" required minlength="8"
+               aria-describedby="pwHelp" />
+        <div id="pwHelp">Minimum 8 characters.</div>
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm password</label><br>
+        <input id="confirmPassword" name="confirmPassword" type="password" required
+               aria-describedby="confirmHelp" />
+        <div id="confirmHelp">Re-enter your password.</div>
+      </div>
+
+      <div>
+        <input id="terms" name="terms" type="checkbox" required aria-required="true" />
+        <label for="terms">I agree to the <a href="#" tabindex="0">terms and conditions</a>.</label>
+      </div>
+
+      <div>
+        <button type="submit">Register Now</button>
+      </div>
+    </form>
+
+    <div id="message" role="status" aria-live="polite" style="margin-top:1em;"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 TechCon. All rights reserved.</p>
+  </footer>
+
+  <!-- Small client-side validation (optional, keeps it beginner-friendly) -->
+  <script>
+    const form = document.getElementById('registerForm');
+    const msg = document.getElementById('message');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+
+      const pw = form.password.value;
+      const cpw = form.confirmPassword.value;
+
+      if (pw !== cpw) {
+        msg.textContent = 'Passwords do not match — please try again.';
+        form.confirmPassword.focus();
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        msg.textContent = 'Please complete all required fields correctly.';
+        return;
+      }
+
+      // Demo: show success (this page doesn't submit to a server)
+      msg.textContent = 'Registration submitted (demo).';
+    });
+  </script>
+</body>
+</html>
+
